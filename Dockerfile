@@ -1,6 +1,6 @@
-FROM java:8-jdk
+FROM fabric8/java-centos-openjdk8-jre
 
-RUN apt-get update && apt-get install -y git curl zip && rm -rf /var/lib/apt/lists/*
+RUN yum install -y unzip git wget
 
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
