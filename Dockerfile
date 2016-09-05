@@ -18,7 +18,9 @@ RUN groupadd -g ${gid} ${group} \
 
 # Jenkins home directory is a volume, so configuration and build history 
 # can be persisted and survive image upgrades
-VOLUME /var/jenkins_home
+
+# For now we are commenting this out, as it was causing issues in openshift dedicated.
+# VOLUME /var/jenkins_home
 
 # `/usr/share/jenkins/ref/` contains all reference configuration we want 
 # to set on a fresh new installation. Use it to bundle additional plugins 
