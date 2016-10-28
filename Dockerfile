@@ -1,6 +1,13 @@
 FROM fabric8/java-centos-openjdk8-jre
 
-RUN yum install -y unzip git wget
+#We install epel in this step, so we can install the nss_wrapper in the next one.
+#Package nss_wrapper is needed to support arbitrary user ids on openshift
+#https://docs.openshift.com/enterprise/3.2/creating_images/guidelines.html
+# wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+# rpm -ivh epel-release-6-8.noarch.rpm
+
+RUN yum install -y unzip git wget epel-release gettext
+RUN yum install -y nss_wrapper
 
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
